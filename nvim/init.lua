@@ -1,5 +1,6 @@
 require "user.options"
 require "user.plugins"
+require "user.lspInstaller"
 require "user.cmp"
 require "user.gitsigns"
 require "user.colorscheme"
