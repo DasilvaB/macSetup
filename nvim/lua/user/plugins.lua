@@ -35,6 +35,7 @@ return packer.startup(function(use)
     -- some optional icons
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   })
+  -- use "fatih/vim-go" -- Great golang features such as :GoDocs -- NOTE: this doesn't work well with LSP 
 
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out

@@ -56,6 +56,13 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Quickfix window
+keymap("n", "cn", ":cnext<CR>", opts)
+keymap("n", "cp", ":cprev<CR>", opts)
+keymap("n", "cc", ":cc", opts)
+keymap("n", "cl", ":cclose<CR>", opts)
+keymap("n", "co", ":copen<CR>", opts)
+
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
