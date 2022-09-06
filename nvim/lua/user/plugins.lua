@@ -59,6 +59,7 @@ return packer.startup(function(use)
   use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
   use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
   use 'mfussenegger/nvim-jdtls'
+  use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
   
   -- Telescope
   use "nvim-telescope/telescope.nvim"
@@ -73,6 +74,12 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
   -- use "airblade/vim-gitugtter"
+
+  -- harpoon 
+  use 'ThePrimeagen/harpoon'
+
+  -- headers for statements such as functions/if/for/etc. 
+  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

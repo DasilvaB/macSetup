@@ -8,4 +8,5 @@ require "user.treesitter"
 require "user.keymaps"
 require "user.nvim-tree"
 require "user.galaxyline"
-
+--require "user.lsp_lines"
+require "user.harpoon"

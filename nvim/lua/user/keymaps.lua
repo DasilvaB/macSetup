@@ -27,6 +27,12 @@ keymap("n", "<cr>", ":noh<cr>", opts) -- After searching text with '\' you can p
 -- Nvim-tree
 keymap("n", "<space>e", ":NvimTreeToggle<cr>", opts)
 
+-- Harpoon 
+keymap("n", "<space>a", ":lua require('harpoon.mark').add_file()<CR>", opts)
+keymap("n", "<space>m", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
+keymap("n", "<space>n", ":lua require('harpoon.ui').nav_next()<CR>", opts)
+keymap("n", "<space>p", ":lua require('harpoon.ui').nav_prev()<CR>", opts)
+
 -- Telescope
 keymap("n", "tf", ":Telescope find_files<cr>", opts)
 keymap("n", "tl", ":Telescope live_grep<cr>", opts)

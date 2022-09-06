@@ -19,7 +19,9 @@ local config = {
     '-Declipse.product=org.eclipse.jdt.ls.core.product',
     '-Dlog.protocol=true',
     '-Dlog.level=ALL',
+    '-javaagent:/Users/brunodasilva/.local/share/nvim/lsp_servers/lombok.jar',
     '-Xms1g',
+    '-Xms2G',
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
@@ -69,4 +71,22 @@ local config = {
 }
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
+local root_markers = {'build.gradle', 'pom.xml'}
+local root_dir = require('jdtls.setup').find_root(root_markers)
+
+-- For Gradle only lets remove the .settings folder
+if root_dir ~=nil then
+    local f=io.open(root_dir .. "/build.gradle","r")
+    if f~=nil then
+       io.close(f)
+       -- vim.g['test#java#runner'] = 'gradletest'
+       vim.api.nvim_exec([[
+       let test#java#runner = 'gradletest'
+       ]], true)
+       os.execute("rm -rf " .. root_dir .. "/.settings")
+       os.execute("rm -rf " .. root_dir .. "/.classpath")
+       os.execute("rm -rf " .. root_dir .. "/.project")
+       os.execute("rm -rf " .. root_dir .. "/bin/")
+    end
+end
 require('jdtls').start_or_attach(config)
