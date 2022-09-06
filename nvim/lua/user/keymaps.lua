@@ -32,6 +32,7 @@ keymap("n", "<space>a", ":lua require('harpoon.mark').add_file()<CR>", opts)
 keymap("n", "<space>m", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
 keymap("n", "<space>n", ":lua require('harpoon.ui').nav_next()<CR>", opts)
 keymap("n", "<space>p", ":lua require('harpoon.ui').nav_prev()<CR>", opts)
+keymap("n", "<space>f", ":lua require('harpoon.ui').nav_file(", opts)
 
 -- Telescope
 keymap("n", "tf", ":Telescope find_files<cr>", opts)
