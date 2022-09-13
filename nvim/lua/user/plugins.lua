@@ -41,6 +41,7 @@ return packer.startup(function(use)
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "dracula/vim"
   use "sainnhe/sonokai"
+  use "ellisonleao/gruvbox.nvim"
 
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -59,17 +60,41 @@ return packer.startup(function(use)
   use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
   use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
   use 'mfussenegger/nvim-jdtls'
-  use "https://git.sr.ht/~whynothugo/lsp_lines.nvim"
+  use({
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  })
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+  use({ 'j-hui/fidget.nvim' })
+  require("fidget").setup{}
   
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+  require("telescope").setup{ 
+    defaults = { 
+      file_ignore_patterns = {
+        "vendor"
+      }
+    } 
+  }
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
   }
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- Git
   use "lewis6991/gitsigns.nvim"
@@ -77,6 +102,7 @@ return packer.startup(function(use)
 
   -- harpoon 
   use 'ThePrimeagen/harpoon'
+  require("harpoon").setup()
 
   -- headers for statements such as functions/if/for/etc. 
   use 'nvim-treesitter/nvim-treesitter-context'
