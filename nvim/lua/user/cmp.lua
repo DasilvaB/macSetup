@@ -65,12 +65,21 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
+--vim.lsp.handlers["textDocument/publishDiagnostics"] =
+--    vim.lsp.with(
+--    vim.lsp.diagnostic.on_publish_diagnostics,
+--    {
+--        underline = false,
+--        --virtual_text = false,
+--        update_in_insert = false
+--    }
+--)
+
 local opts = { noremap=true, silent=true }
-vim.keymap.set('n', 'gO', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>gO', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-vim.keymap.set('n', '<space>r', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
@@ -92,7 +101,7 @@ local on_attach = function(client, bufnr)
   end, bufopts)
   vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', '<space>Ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
