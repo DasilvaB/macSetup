@@ -19,13 +19,11 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "numToStr/Comment.nvim" -- Easily comment stuff
   use {
-  'kyazdani42/nvim-tree.lua',
-  requires = {
+    'kyazdani42/nvim-tree.lua',
+    requires = {
       'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
@@ -35,7 +33,15 @@ return packer.startup(function(use)
     -- some optional icons
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   })
-  -- use "fatih/vim-go" -- Great golang features such as :GoDocs -- NOTE: this doesn't work well with LSP 
+  use "gen740/SmoothCursor.nvim"
+  require("smoothcursor").setup{}
+  use { 
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+  require("Comment").setup{}
 
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
@@ -60,12 +66,6 @@ return packer.startup(function(use)
   use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
   use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
   use 'mfussenegger/nvim-jdtls'
-  use({
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      require("lsp_lines").setup()
-    end,
-  })
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
@@ -77,7 +77,7 @@ return packer.startup(function(use)
       }
     end
   }
-  use({ 'j-hui/fidget.nvim' })
+  use({ 'j-hui/fidget.nvim' }) -- tells you when lsp finishes loading
   require("fidget").setup{}
   
   -- Telescope

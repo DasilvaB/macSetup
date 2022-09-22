@@ -20,6 +20,7 @@ vim.g.maplocalleader = " "
 
 -- My keymaps
 keymap("n", "<cr>", ":noh<cr>", opts) -- After searching text with '\' you can press enter to get rid of highlight
+keymap("n", "<leader>p", "\"_dP", opts) -- Delete copys things into register, so using leader p will ensure the deletd text does not replace whats currently copied
 
 -- Lsp
 -- Lsp keymaps can be found in file cmp.lua
