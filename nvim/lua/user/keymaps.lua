@@ -20,6 +20,7 @@ vim.g.maplocalleader = " "
 
 -- My keymaps
 keymap("n", "<cr>", ":noh<cr>", opts) -- After searching text with '\' you can press enter to get rid of highlight
+keymap("n", "<leader>p", "\"_dP", opts) -- Delete copys things into register, so using leader p will ensure the deletd text does not replace whats currently copied
 
 -- Lsp
 -- Lsp keymaps can be found in file cmp.lua
@@ -27,18 +28,26 @@ keymap("n", "<cr>", ":noh<cr>", opts) -- After searching text with '\' you can p
 -- Nvim-tree
 keymap("n", "<space>e", ":NvimTreeToggle<cr>", opts)
 
+-- Trouble (nvim trouble)
+keymap("n", "<leader>xx", ":TroubleToggle<cr>",opts)
+keymap("n", "<leader>xw", ":TroubleToggle workspace_diagnostics<cr>",opts)
+keymap("n", "<leader>xd", ":TroubleToggle document_diagnostics<cr>",opts)
+keymap("n", "<leader>xq", ":TroubleToggle quickfix<cr>",opts)
+keymap("n", "<leader>xl", ":TroubleToggle loclist<cr>",opts)
+keymap("n", "<leader>gR", ":TroubleToggle lsp_references<cr>",opts)
+
 -- Harpoon 
-keymap("n", "<space>a", ":lua require('harpoon.mark').add_file()<CR>", opts)
-keymap("n", "<space>m", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
-keymap("n", "<space>n", ":lua require('harpoon.ui').nav_next()<CR>", opts)
-keymap("n", "<space>p", ":lua require('harpoon.ui').nav_prev()<CR>", opts)
-keymap("n", "<space>f", ":lua require('harpoon.ui').nav_file(", opts)
+keymap("n", "<leader>ha", ":lua require('harpoon.mark').add_file()<CR>", opts)
+keymap("n", "<leader>hm", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
+keymap("n", "<leader>hn", ":lua require('harpoon.ui').nav_next()<CR>", opts)
+keymap("n", "<leader>hp", ":lua require('harpoon.ui').nav_prev()<CR>", opts)
+keymap("n", "<leader>hf", ":lua require('harpoon.ui').nav_file(", opts)
 
 -- Telescope
-keymap("n", "tf", ":Telescope find_files<cr>", opts)
-keymap("n", "tl", ":Telescope live_grep<cr>", opts)
-keymap("n", "tg", ":Telescope grep_string<cr>", opts)
-keymap("n", "tb", ":Telescope buffers<cr>", opts)
+keymap("n", "<leader>tf", ":Telescope find_files<cr>", opts)
+keymap("n", "<leader>tl", ":Telescope live_grep<cr>", opts)
+keymap("n", "<leader>tg", ":Telescope grep_string<cr>", opts)
+keymap("n", "<leader>tb", ":Telescope buffers<cr>", opts)
 
 -- Normal --
 -- Better window navigation
@@ -58,11 +67,11 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Quickfix window
-keymap("n", "cn", ":cnext<CR>", opts)
-keymap("n", "cp", ":cprev<CR>", opts)
-keymap("n", "cc", ":cc", opts)
-keymap("n", "cl", ":cclose<CR>", opts)
-keymap("n", "co", ":copen<CR>", opts)
+keymap("n", "<leader>cn", ":cnext<CR>", opts)
+keymap("n", "<leader>cp", ":cprev<CR>", opts)
+keymap("n", "<leader>cc", ":cc", opts)
+keymap("n", "<leader>cl", ":cclose<CR>", opts)
+keymap("n", "<leader>co", ":copen<CR>", opts)
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)

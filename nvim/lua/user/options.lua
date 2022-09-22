@@ -6,8 +6,14 @@
 vim.cmd[[highlight Pmenu ctermbg=gray guibg=gray]] 
 vim.cmd[[highlight SignColumn guibg=None]]
 
-vim.opt.foldmethod = "indent"
+vim.opt.foldmethod = "expr"
 vim.opt.foldenable = false
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+  pattern = {"*"},
+  command = "normal zx zR",
+})
+
 vim.opt.backup = false                          -- creates a backup file
 vim.opt.clipboard = "unnamedplus"               -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 2                           -- more space in the neovim command line for displaying messages
