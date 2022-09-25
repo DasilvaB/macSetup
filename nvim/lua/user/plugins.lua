@@ -42,11 +42,13 @@ return packer.startup(function(use)
     end
   }
   require("Comment").setup{}
+  use "lukas-reineke/indent-blankline.nvim"
 
   -- Colorschemes
   -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "dracula/vim"
   use "sainnhe/sonokai"
+  use "catppuccin/nvim"
   use "ellisonleao/gruvbox.nvim"
 
   -- cmp plugins
