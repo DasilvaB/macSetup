@@ -4,7 +4,7 @@ vim.cmd [[
       set background=light
       colorscheme catppuccin
     else
-      colorscheme catppuccin
+      colorscheme catppuccin 
     endif
   catch /^Vim\%((\a\+)\)\=E185/
     colorscheme default
