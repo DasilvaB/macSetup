@@ -1,4 +1,4 @@
--- Setup nvim-cmp.
+
 local cmp = require'cmp'
 
 cmp.setup({
@@ -91,7 +91,7 @@ local on_attach = function(client, bufnr)
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   vim.keymap.set('n', 'gs', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
@@ -106,6 +106,16 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
+-- local on_attach_jdtls = function(client, bufnr)
+--     local opts = { noremap=true, silent=true }
+--     vim.api.nvim_set_keymap('n', 'gd', 'lua vim.lsp.buf.definition()<CR>', opts)
+--     vim.api.nvim_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+--     vim.api.nvim_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+--     vim.api.nvim_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+--     
+--     vim.api.nvim_set_keymap('n', 'lA', '<cmd>lua require(\'jdtls\').code_action()<CR>', opts)
+-- end
+
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
@@ -114,3 +124,44 @@ require('lspconfig')['gopls'].setup {
   on_attach = on_attach,
   flags = lsp_flags
 }
+require('lspconfig')['rust_analyzer'].setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags
+}
+require('lspconfig')['pylsp'].setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  flags = lsp_flags
+}
+
+
+-- local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+-- local workspace_dir = '/Users/brunodasilva/projects/dev/java/workspaces/' .. project_name
+-- require('lspconfig').jdtls.setup {
+--   capabilities = capabilities,
+--   on_attach = on_attach_jdtls,
+--   flags = lsp_flags,
+--   cmd = {
+--     'java', -- or '/path/to/java11_or_newer/bin/java'
+--     '-Declipse.application=org.eclipse.jdt.ls.core.id1',
+--     '-Dosgi.bundles.defaultStartLevel=4',
+--     '-Declipse.product=org.eclipse.jdt.ls.core.product',
+--     '-Dlog.protocol=true',
+--     '-Dlog.level=ALL',
+--     '-javaagent:/Users/brunodasilva/.local/share/nvim/lsp_servers/lombok.jar',
+--     '-Xms1g',
+--     '-Xms2G',
+--     '--add-modules=ALL-SYSTEM',
+--     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
+--     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+--     '-jar', '/Users/brunodasilva/.config/nvim/ftplugin/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
+--     '-configuration', '/Users/brunodasilva/.config/nvim/ftplugin/jdtls/config_mac',
+--     '-data', workspace_dir 
+--   },
+--   -- root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
+--
+-- }
+--
+
+
