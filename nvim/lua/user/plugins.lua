@@ -18,6 +18,7 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
+  use "github/copilot.vim" -- copilot
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
