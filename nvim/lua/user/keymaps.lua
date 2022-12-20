@@ -1,3 +1,5 @@
+local builtin = require('telescope.builtin')
+
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
@@ -6,9 +8,7 @@ local term_opts = { silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -20,8 +20,37 @@ vim.g.maplocalleader = " "
 
 -- My keymaps
 keymap("n", "<cr>", ":noh<cr>", opts) -- After searching text with '\' you can press enter to get rid of highlight
+
 keymap("n", "<leader>p", "\"_dP", opts) -- Delete copys things into register, so using leader p will ensure the deletd text does not replace whats currently copied
+keymap("n", "<leader>d", "\"_d", opts) -- Delete copys things into register, so using leader d will ensure the deletd text does not replace whats currently copied
+keymap("v", "<leader>d", "\"_d", opts) -- Delete copys things into register, so using leader d will ensure the deletd text does not replace whats currently copied
+
 keymap("n", "<leader>o", "o<Esc>", opts) -- Adds new line without going into insert mode
+keymap("n", "<leader>pv", ":Explore<cr>", opts) -- Opens file explorer
+
+keymap("v", "J", ":m '>+1<cr>gv=gv", opts) -- Move selected lines C-Down
+keymap("v", "K", ":m '<-2<cr>gv=gv", opts) -- Move selected lines C-Up
+
+keymap("n", "<C-d>", "<C-d>zz", opts) -- Scroll down half a page
+keymap("n", "<C-u>", "<C-u>zz", opts) -- Scroll up half a page
+
+keymap("n", "n", "nzzzv", opts) -- Scroll down one lines
+keymap("n", "N", "Nzzzv", opts) -- Scroll up one line
+
+keymap("n", "<leader>y", "\"+y", opts) -- Copy to system clipboard
+keymap("n", "<leader>Y", "\"+y", opts) -- Copy to system clipboard
+keymap("v", "<leader>y", "\"+y", opts) -- Copy to system clipboard
+
+keymap("n", "Q", "<nop>", opts) -- Disable Ex mode
+
+keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<cr>", term_opts) -- Open tmux sessionizer in new terminal
+
+keymap("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>//g<left><left>", opts) -- Search and replace word under cursor
+
+-- formats the current file
+vim.keymap.set("n", "<leader>f", function() 
+    vim.lsp.buf.format()
+end, opts)
 
 -- Lsp
 -- Lsp keymaps can be found in file cmp.lua
@@ -47,8 +76,16 @@ keymap("n", "<leader>hf", ":lua require('harpoon.ui').nav_file(", opts)
 -- Telescope
 keymap("n", "<leader>tf", ":Telescope find_files<cr>", opts)
 keymap("n", "<leader>tl", ":Telescope live_grep<cr>", opts)
-keymap("n", "<leader>tg", ":Telescope grep_string<cr>", opts)
+keymap("n", "<leader>ts", ":Telescope grep_string<cr>", opts)
 keymap("n", "<leader>tb", ":Telescope buffers<cr>", opts)
+vim.keymap.set("n", "<leader>tg", function() 
+    builtin.grep_string({
+        search = vim.fn.input("Grep > "),
+    })
+end)
+
+-- Undotree 
+keymap("n", "<leader>u", ":UndotreeToggle<cr>", opts)
 
 -- Normal --
 -- Better window navigation

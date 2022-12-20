@@ -19,6 +19,7 @@ packer.init {
 return packer.startup(function(use)
   -- My plugins here
   use "github/copilot.vim" -- copilot
+  use "mbbill/undotree" -- undo tree
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
